@@ -3,122 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Manoj Reddy | Personal Website</title>
+
     <style>
         body {
-            background-color: beige;
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0 20px;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f3f6fb;
+            color: #2c2c2c;
         }
-        h1, h2, h3, h4 {
+
+        .hero {
+            background: linear-gradient(135deg, #1f3c88, #4a90e2);
+            color: white;
             text-align: center;
-            color: darkred;
-            background-color: blanchedalmond;
-            margin: 10px 0;
-            padding: 10px;
+            padding: 90px 20px;
         }
-        h2 {
-            font-size: 30px;
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
         }
-        hr {
-            margin: 20px 0;
-        }
-        p {
+
+        .hero p {
+            font-size: 20px;
+            max-width: 720px;
+            margin: auto;
             line-height: 1.6;
         }
-        ol, ul {
-            margin-left: 20px;
+
+        .container {
+            max-width: 1100px;
+            margin: 70px auto;
+            padding: 0 20px;
         }
-        ul[type="square"] {
-            list-style-type: square;
+
+        section {
+            background: #ffffff;
+            padding: 40px;
+            margin-bottom: 45px;
+            border-radius: 14px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
         }
-        table {
-            width: 50%;
-            border-collapse: collapse;
-            margin: 0 auto 20px auto;
+
+        section h2 {
+            font-size: 30px;
+            color: #1f3c88;
+            margin-bottom: 15px;
         }
-        table, th, td {
-            border: 2px solid black;
+
+        section p {
+            font-size: 16px;
+            line-height: 1.8;
         }
-        th, td {
-            padding: 8px;
-            text-align: center;
-        }
-        footer {
-            text-align: center;
-            background-color: burlywood;
-            padding: 10px 0;
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
-        a {
-            color: darkred;
+
+        .card {
+            background: #f9fbff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #1f3c88;
+        }
+
+        .card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #1f3c88;
+            color: white;
+            padding: 14px;
+            text-align: center;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        footer {
+            background-color: #1f3c88;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        footer a {
+            color: #aad1ff;
             text-decoration: none;
         }
-        a:hover {
+
+        footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
-    <h1>GOOD MORNING!</h1>
-    <h2>INTRODUCTION</h2>
-    <p>My name is <b><i>MANOJ REDDY</i></b>, I am a second-year IT student at <b><i>VASAVI COLLEGE OF ENGINEERING</i></b>.</p>
-    <p>Batch: 2024-2028</p>
-    <p>I am very much interested in problem solving.</p>
-    <hr>
-    <h3>Academic Qualification</h3>
-    <ol>
-        <li>SSC Board - 9.8</li>
-        <li>Intermediate - 945</li>
-        <li>B.E CGPA - 8.58</li>
-    </ol>
-    <hr>
-    <h3>SKILLS</h3>
-    <ul>
-        <li>C-Language</li>
-        <li>Python</li>
-        <li>JAVA</li>
-        <li>C++</li>
-        <li>Data Structures</li>
-        <li>DBMS</li>
-        <li>DevOps</li>
-    </ul>
-    <hr>
-    <h3>PROJECTS</h3>
-    <ol type="I">
-        <li>TYPING SPEED GAME in C-Language</li>
-        <li>BANKING MANAGEMENT SYSTEM in JAVA</li>
-        <li>KISAAN SETHU (agri-tech) in FSD</li>
-        <li>AI CODE OPTIMIZER in Python</li>
-    </ol>
-    <hr>
-    <h3>HOBBIES</h3>
-    <ul type="square">
-        <li>Reading books</li>
-        <li>Coding practice</li>
-        <li>Learning new programming frameworks</li>
-    </ul>
-    <hr>
-    <h3>ONLINE COURSES COMPLETED</h3>
-    <table>
-        <tr>
-            <th>COURSE NAME</th>
-            <th>PERCENTAGE</th>
-        </tr>
-        <tr>
-            <td>NPTEL - C++</td>
-            <td>98%</td>
-        </tr>
-        <tr>
-            <td>CISCO PYTHON</td>
-            <td>100%</td>
-        </tr>
-    </table>
-    <hr>
+
+    <div class="hero">
+        <h1>D. Manoj Reddy</h1>
+        <p>
+            Information Technology student passionate about problem solving,
+            software development, and building meaningful digital products.
+        </p>
+    </div>
+
+    <div class="container">
+
+        <section>
+            <h2>About Me</h2>
+            <p>
+                I am a second-year IT student at <b>Vasavi College of Engineering</b>
+                (Batch 2024–2028). I enjoy tackling challenging problems,
+                learning new technologies, and working on projects
+                that solve real-world problems.
+            </p>
+        </section>
+
+        <section>
+            <h2>Skills & Expertise</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Programming</h3>
+                    <p>C, C++, Java, Python</p>
+                </div>
+                <div class="card">
+                    <h3>Computer Science</h3>
+                    <p>Data Structures, Algorithms, DBMS</p>
+                </div>
+                <div class="card">
+                    <h3>Development</h3>
+                    <p>Full Stack Development</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Typing Speed Game</h3>
+                    <p>C-based application to test typing accuracy and speed.</p>
+                </div>
+                <div class="card">
+                    <h3>Banking Management System</h3>
+                    <p>Java application for secure banking operations.</p>
+                </div>
+                <div class="card">
+                    <h3>Kisaan Sethu</h3>
+                    <p>Agri-tech platform connecting farmers with digital services.</p>
+                </div>
+                <div class="card">
+                    <h3>AI Code Optimizer</h3>
+                    <p>Python tool that suggests optimized and efficient code.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Certifications</h2>
+            <table>
+                <tr>
+                    <th>Course</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>NPTEL – C++</td>
+                    <td>98%</td>
+                </tr>
+                <tr>
+                    <td>CISCO – Python</td>
+                    <td>100%</td>
+                </tr>
+            </table>
+        </section>
+
+    </div>
+
     <footer>
-        <p><b>D. MANOJ REDDY</b></p>
-        <p>CONTACT: 9966007804 | EMAIL: <a href="mailto:dullamanojreddy@gmail.com">dullamanojreddy@gmail.com</a></p>
+        <p>📞 9966007804 | ✉️ 
+            <a href="mailto:dullamanojreddy@gmail.com">
+                dullamanojreddy@gmail.com
+            </a>
+        </p>
+        <p>© 2026 Manoj Reddy</p>
     </footer>
+
 </body>
 </html>
