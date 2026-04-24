@@ -41,13 +41,49 @@ const seedData = async () => {
         title: "Personal Portfolio Website",
         description: "Responsive portfolio website to showcase profile, education, skills, and certifications.",
         techStack: ["React", "Node.js", "Express", "MongoDB"],
-        featured: true
+        featured: true,
+        repoUrl: "https://github.com/dullamanojreddy/my-website"
       },
       {
         title: "NyayAI - AI Court Simulator",
         description: "AI-powered court simulation platform that models legal argument flows and verdict reasoning.",
         techStack: ["React", "Node.js", "Express", "MongoDB"],
         featured: true
+      },
+      {
+        title: "KisanSetu 🌾",
+        description: "Farmer-centric digital platform designed to bridge the gap between farmers and modern digital tools. Provides accessible, reliable, and scalable software solutions supporting informed decision-making in agriculture with API-based integration.",
+        techStack: ["Python", "JavaScript", "REST APIs"],
+        featured: false,
+        repoUrl: "https://github.com/dullamanojreddy/kisaansethu"
+      },
+      {
+        title: "Banking Management System 🏦",
+        description: "Java-based desktop application built with Swing to simulate real-world banking operations. Features account management, transaction handling, and a user-friendly GUI demonstrating strong OOP principles and software engineering practices.",
+        techStack: ["Java", "Swing", "Collections"],
+        featured: false,
+        repoUrl: "https://github.com/dullamanojreddy/BankingManagementSystem"
+      },
+      {
+        title: "Bastion - LLM Security Layer 🛡️",
+        description: "Model-agnostic pre-prompt security layer for locally deployed LLMs. FastAPI backend with rule-based and ML-powered threat detection, Streamlit dashboard for monitoring, and comprehensive logging for security analysis.",
+        techStack: ["Python", "FastAPI", "Streamlit", "Machine Learning"],
+        featured: false,
+        repoUrl: "https://github.com/dullamanojreddy/bastion"
+      },
+      {
+        title: "Binary Bounty",
+        description: "Collection of binary-themed games built with React and Vite. Includes Bingo, Blind Maze, Deceptive, and Binary Lock games with shared RulesScreen component and collaborative team workflow.",
+        techStack: ["React", "Vite", "JavaScript", "CSS"],
+        featured: false,
+        repoUrl: "https://github.com/dullamanojreddy/Binary-Bounty"
+      },
+      {
+        title: "Smart Supply Chain Consistency Engine",
+        description: "Full-stack database-driven supply chain management system with JavaFX frontend, Node.js/Express backend, and MySQL database. Manages products, customers, warehouses, inventory, orders with real-time stock updates and transaction logging.",
+        techStack: ["JavaFX", "Node.js", "Express", "MySQL"],
+        featured: false,
+        repoUrl: "https://github.com/dullamanojreddy/Smart-Supply-Chain-Consistency-Engine"
       }
     ]);
   }
