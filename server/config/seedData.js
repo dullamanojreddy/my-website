@@ -52,35 +52,35 @@ const seedData = async () => {
       },
       {
         title: "KisanSetu 🌾",
-        description: "Farmer-centric digital platform designed to bridge the gap between farmers and modern digital tools. Provides accessible, reliable, and scalable software solutions supporting informed decision-making in agriculture with API-based integration.",
+        description: "Farmer-centric platform connecting farmers with digital tools, information, and services for informed agricultural decision-making.",
         techStack: ["Python", "JavaScript", "REST APIs"],
         featured: false,
         repoUrl: "https://github.com/dullamanojreddy/kisaansethu"
       },
       {
         title: "Banking Management System 🏦",
-        description: "Java-based desktop application built with Swing to simulate real-world banking operations. Features account management, transaction handling, and a user-friendly GUI demonstrating strong OOP principles and software engineering practices.",
+        description: "Java Swing desktop app for managing bank accounts, transactions, and customer data with a user-friendly GUI.",
         techStack: ["Java", "Swing", "Collections"],
         featured: false,
         repoUrl: "https://github.com/dullamanojreddy/BankingManagementSystem"
       },
       {
         title: "Bastion - LLM Security Layer 🛡️",
-        description: "Model-agnostic pre-prompt security layer for locally deployed LLMs. FastAPI backend with rule-based and ML-powered threat detection, Streamlit dashboard for monitoring, and comprehensive logging for security analysis.",
+        description: "Model-agnostic security layer for LLMs with FastAPI backend, rule-based detection, and Streamlit dashboard.",
         techStack: ["Python", "FastAPI", "Streamlit", "Machine Learning"],
         featured: false,
         repoUrl: "https://github.com/dullamanojreddy/bastion"
       },
       {
         title: "Binary Bounty",
-        description: "Collection of binary-themed games built with React and Vite. Includes Bingo, Blind Maze, Deceptive, and Binary Lock games with shared RulesScreen component and collaborative team workflow.",
+        description: "Collection of binary-themed games built with React and Vite including Bingo, Maze, and Binary Lock.",
         techStack: ["React", "Vite", "JavaScript", "CSS"],
         featured: false,
         repoUrl: "https://github.com/dullamanojreddy/Binary-Bounty"
       },
       {
-        title: "Smart Supply Chain Consistency Engine",
-        description: "Full-stack database-driven supply chain management system with JavaFX frontend, Node.js/Express backend, and MySQL database. Manages products, customers, warehouses, inventory, orders with real-time stock updates and transaction logging.",
+        title: "Smart Supply Chain Engine",
+        description: "Full-stack supply chain system with JavaFX UI, Node.js backend, MySQL database managing inventory and orders.",
         techStack: ["JavaFX", "Node.js", "Express", "MySQL"],
         featured: false,
         repoUrl: "https://github.com/dullamanojreddy/Smart-Supply-Chain-Consistency-Engine"
