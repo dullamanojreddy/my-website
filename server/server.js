@@ -12,8 +12,25 @@ const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
 
-// ✅ IMPORTANT: Railway requires process.env.PORT
+// IMPORTANT: local/dev port for non-serverless runtime
 const PORT = process.env.PORT || 5000;
+
+let isInitialized = false;
+
+const initializeServer = async () => {
+  if (isInitialized) {
+    return;
+  }
+
+  await connectDB();
+
+  // Seeding is opt-in on serverless to avoid extra work on cold starts.
+  if (process.env.ENABLE_SEED === "true") {
+    await seedData();
+  }
+
+  isInitialized = true;
+};
 
 /* ---------------- CORS CONFIG ---------------- */
 const allowedOrigins = [
@@ -39,6 +56,16 @@ app.use(
 /* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());
 
+// Ensure DB is ready before any route handler runs.
+app.use(async (req, res, next) => {
+  try {
+    await initializeServer();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
 /* ---------------- ROUTES ---------------- */
 app.use("/api", portfolioRoutes);
 app.use("/api", contactRoutes);
@@ -63,10 +90,9 @@ app.use((err, req, res, next) => {
 /* ---------------- START SERVER (RAILWAY FIX) ---------------- */
 const startServer = async () => {
   try {
-    await connectDB();
-    await seedData();
+    await initializeServer();
 
-    // ✅ CRITICAL FIX: bind to 0.0.0.0 for Railway
+    // Bind to 0.0.0.0 for Railway/local container runtimes.
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`🚀 Server running on port ${PORT}`);
     });
@@ -76,4 +102,9 @@ const startServer = async () => {
   }
 };
 
-startServer();
+// Vercel provides the request listener. Only listen in non-Vercel runtimes.
+if (!process.env.VERCEL) {
+  startServer();
+}
+
+module.exports = app;
