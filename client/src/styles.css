@@ -262,6 +262,10 @@ p {
   margin-left: auto;
 }
 
+.nav-list-desktop {
+  display: flex;
+}
+
 .nav-link {
   text-decoration: none;
   color: #b7c3df;
@@ -1421,6 +1425,10 @@ p {
     display: inline-grid;
     position: relative;
     z-index: 1002;
+  }
+
+  .nav-list-desktop {
+    display: none;
   }
 
   .nav-list {

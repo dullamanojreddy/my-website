@@ -102,6 +102,16 @@ function Navbar() {
           Dulla Manoj Reddy
         </NavLink>
 
+        <ul className="nav-list nav-list-desktop">
+          {NAV_ITEMS.map((item) => (
+            <li key={item.to}>
+              <NavLink to={item.to} className={navClassName} onClick={closeMenus}>
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+
         <button
           className="menu-toggle"
           aria-label="Toggle navigation"
