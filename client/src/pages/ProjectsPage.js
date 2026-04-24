@@ -39,11 +39,11 @@ function ProjectsPage() {
       </div>
 
       <div className="projects-grid">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <article className="card-surface project-tile" key={project.title}>
             <div className="project-image-shell" aria-hidden="true">
               <div className="project-image-glow" />
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span>{project.emoji || "🚀"}</span>
             </div>
             <h3>{project.title}</h3>
             <p className="muted-text">{project.description}</p>

@@ -5,9 +5,10 @@ const projectSchema = new mongoose.Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     techStack: { type: [String], default: [] },
-    liveUrl: { type: String, default: "" },
-    repoUrl: { type: String, default: "" },
-    featured: { type: Boolean, default: false }
+    demoUrl: { type: String, default: "" },
+    githubUrl: { type: String, default: "" },
+    featured: { type: Boolean, default: false },
+    emoji: { type: String, default: "🚀" }
   },
   { timestamps: true }
 );
