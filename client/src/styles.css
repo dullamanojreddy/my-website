@@ -258,7 +258,7 @@ p {
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1.1rem;
   margin-left: auto;
 }
 
@@ -270,7 +270,7 @@ p {
   text-decoration: none;
   color: #b7c3df;
   border-radius: 10px;
-  padding: 0.5rem 0.2rem;
+  padding: 0.58rem 0.28rem;
   font-weight: 700;
   font-size: 0.94rem;
   position: relative;
@@ -282,7 +282,7 @@ p {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -0.12rem;
+  bottom: -0.18rem;
   height: 2px;
   border-radius: 999px;
   background: linear-gradient(90deg, #63d0ff, #7f8fff);
