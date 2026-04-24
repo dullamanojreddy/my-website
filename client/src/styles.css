@@ -1659,7 +1659,7 @@ p {
   }
 
   .hero-copy {
-    margin-top: clamp(14rem, 55vw, 17rem);
+    margin-top: clamp(15rem, 58vw, 18rem);
     padding-top: 0;
     padding-bottom: 0;
     max-width: none;
