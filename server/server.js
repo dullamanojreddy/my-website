@@ -78,6 +78,11 @@ app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "API is running." });
 });
 
+/* ---------------- ROOT CHECK ---------------- */
+app.get("/", (req, res) => {
+  res.send("Backend API is running successfully.");
+});
+
 /* ---------------- ERROR HANDLER ---------------- */
 app.use((err, req, res, next) => {
   console.error("🔥 Error:", err.message);
