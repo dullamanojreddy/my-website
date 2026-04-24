@@ -1630,8 +1630,8 @@ p {
   }
 
   .hero-portrait {
-    left: 0.8rem;
-    right: 1.2rem;
+    left: 0.35rem;
+    right: 1.65rem;
     top: 1rem;
     width: auto;
     height: 48%;
@@ -1640,7 +1640,7 @@ p {
   }
 
   .hero-showcase .hero-image {
-    object-position: 50% 12%;
+    object-position: 46% 12%;
     filter: saturate(1.08) contrast(1.12) brightness(1.22);
   }
 
