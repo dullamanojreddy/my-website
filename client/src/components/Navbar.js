@@ -22,6 +22,20 @@ function Navbar() {
   }, [location.pathname]);
 
   useEffect(() => {
+    const forceClose = () => setIsOpen(false);
+
+    window.addEventListener("hashchange", forceClose);
+    window.addEventListener("pageshow", forceClose);
+    window.addEventListener("resize", forceClose);
+
+    return () => {
+      window.removeEventListener("hashchange", forceClose);
+      window.removeEventListener("pageshow", forceClose);
+      window.removeEventListener("resize", forceClose);
+    };
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => {
       const currentY = window.scrollY;
       const scrollingDown = currentY > lastScrollY.current;
@@ -65,6 +79,7 @@ function Navbar() {
         <button
           className="menu-toggle"
           aria-label="Toggle navigation"
+          type="button"
           onClick={() => setIsOpen((prev) => !prev)}
         >
           {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}

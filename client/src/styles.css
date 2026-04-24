@@ -1443,11 +1443,13 @@ p {
     z-index: 125;
     overflow-y: auto;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transform: translateY(-16px) scale(0.98);
     transition:
       opacity 260ms var(--ease-standard),
-      transform 260ms var(--ease-standard);
+      transform 260ms var(--ease-standard),
+      visibility 0s linear 260ms;
   }
 
   .theme-toggle {
@@ -1463,8 +1465,10 @@ p {
 
   .nav-list.show {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0) scale(1);
+    transition-delay: 0s;
   }
 
   .nav-list li {
@@ -1492,13 +1496,18 @@ p {
     z-index: 122;
     display: block;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 240ms ease;
+    transition:
+      opacity 240ms ease,
+      visibility 0s linear 240ms;
   }
 
   .mobile-backdrop.show {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+    transition-delay: 0s;
   }
 
   .nav-link {
@@ -1506,10 +1515,11 @@ p {
     display: block;
     padding: 0.95rem 1rem;
     border-radius: 14px;
-    border: 1px solid rgba(176, 192, 255, 0.16);
-    background: rgba(8, 14, 30, 0.9);
-    color: #e7eeff;
+    border: 1px solid rgba(176, 192, 255, 0.24);
+    background: rgba(8, 14, 30, 0.95);
+    color: #f2f6ff;
     font-size: 1rem;
+    font-weight: 700;
   }
 
   .nav-link::after {
