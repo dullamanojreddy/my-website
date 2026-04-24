@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { NavLink, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 
@@ -68,6 +69,31 @@ function Navbar() {
   const navClassName = ({ isActive }) =>
     isActive ? "nav-link active" : "nav-link";
 
+  const mobileMenu = isOpen
+    ? createPortal(
+        <>
+          <button
+            className="mobile-backdrop show"
+            type="button"
+            aria-label="Close navigation"
+            onClick={closeMenus}
+          />
+          <div className="mobile-nav-panel show" role="dialog" aria-modal="true" aria-label="Navigation menu">
+            <ul className="nav-list nav-list-mobile">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.to}>
+                  <NavLink to={item.to} className={navClassName} onClick={closeMenus}>
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>,
+        document.body
+      )
+    : null;
+
   return (
     <header className={`site-header ${isHidden ? "hidden" : ""}`}>
       <nav className="nav-wrap">
@@ -84,23 +110,8 @@ function Navbar() {
         >
           {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
         </button>
-
-        <ul className={`nav-list ${isOpen ? "show" : ""}`}>
-          {NAV_ITEMS.map((item, index) => (
-            <li key={item.to} style={{ "--nav-index": index }}>
-              <NavLink to={item.to} className={navClassName} onClick={closeMenus}>
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
       </nav>
-      <button
-        className={`mobile-backdrop ${isOpen ? "show" : ""}`}
-        type="button"
-        aria-label="Close navigation"
-        onClick={closeMenus}
-      />
+      {mobileMenu}
     </header>
   );
 }
