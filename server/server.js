@@ -56,6 +56,16 @@ app.use(
 /* ---------------- MIDDLEWARE ---------------- */
 app.use(express.json());
 
+/* ---------------- ROOT CHECK ---------------- */
+app.get("/", (req, res) => {
+  res.send("Backend API is running successfully.");
+});
+
+/* ---------------- HEALTH CHECK ---------------- */
+app.get("/api/health", (req, res) => {
+  res.json({ success: true, message: "API is running." });
+});
+
 // Ensure DB is ready before any route handler runs.
 app.use(async (req, res, next) => {
   try {
@@ -72,16 +82,6 @@ app.use("/api", contactRoutes);
 
 /* ---------------- STATIC FILES ---------------- */
 app.use("/assets", express.static(path.join(__dirname, "..", "assets")));
-
-/* ---------------- HEALTH CHECK ---------------- */
-app.get("/api/health", (req, res) => {
-  res.json({ success: true, message: "API is running." });
-});
-
-/* ---------------- ROOT CHECK ---------------- */
-app.get("/", (req, res) => {
-  res.send("Backend API is running successfully.");
-});
 
 /* ---------------- ERROR HANDLER ---------------- */
 app.use((err, req, res, next) => {
