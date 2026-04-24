@@ -852,6 +852,7 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  perspective: 1000px;
 }
 
 .project-tile {
@@ -876,6 +877,17 @@ p {
   font-size: 3.2rem;
   color: rgba(255, 255, 255, 0.72);
   letter-spacing: 0.1em;
+  animation: spin 8s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .project-image-glow {
