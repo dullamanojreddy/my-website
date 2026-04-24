@@ -108,10 +108,6 @@ function HomePage() {
             <img src={profileImagePath} alt={displayName} className="hero-image" />
           </div>
           <div className="hero-overlay">
-            <div className="hero-profile-chip">
-              <span className="chip-dot" />
-              <p>{displayName}</p>
-            </div>
             <div className="hero-copy">
               <p className="eyebrow">Available For Work</p>
               <h1>

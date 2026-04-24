@@ -1630,8 +1630,8 @@ p {
   }
 
   .hero-portrait {
-    left: 1.25rem;
-    right: 0.75rem;
+    left: 0.8rem;
+    right: 1.2rem;
     top: 1rem;
     width: auto;
     height: 48%;
@@ -1640,7 +1640,7 @@ p {
   }
 
   .hero-showcase .hero-image {
-    object-position: 56% 12%;
+    object-position: 50% 12%;
     filter: saturate(1.08) contrast(1.12) brightness(1.22);
   }
 
@@ -1663,11 +1663,6 @@ p {
     padding-top: 0;
     padding-bottom: 0;
     max-width: none;
-  }
-
-  .hero-profile-chip {
-    margin-top: auto;
-    margin-bottom: 0.7rem;
   }
 
   .hero-copy h1 {
