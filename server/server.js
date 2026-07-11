@@ -22,11 +22,19 @@ const initializeServer = async () => {
     return;
   }
 
-  await connectDB();
+  try {
+    await connectDB();
+  } catch (error) {
+    console.warn("MongoDB unavailable; using bundled portfolio data.");
+  }
 
   // Seeding is opt-in on serverless to avoid extra work on cold starts.
-  if (process.env.ENABLE_SEED === "true") {
-    await seedData();
+  if (process.env.ENABLE_SEED === "true" && process.env.MONGODB_URI) {
+    try {
+      await seedData();
+    } catch (error) {
+      console.warn("Seeding skipped because the database is unavailable:", error.message);
+    }
   }
 
   isInitialized = true;
@@ -70,10 +78,11 @@ app.get("/api/health", (req, res) => {
 app.use(async (req, res, next) => {
   try {
     await initializeServer();
-    next();
   } catch (error) {
-    next(error);
+    console.warn("Server initialization warning:", error.message);
   }
+
+  next();
 });
 
 /* ---------------- ROUTES ---------------- */
