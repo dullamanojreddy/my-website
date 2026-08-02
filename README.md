@@ -106,8 +106,3 @@ npm run dev
 - Add network access and DB user
 - Copy connection string into `MONGODB_URI`
 
-## Submission Checklist
-
-- GitHub repository link: ADD_YOUR_REPO_LINK
-- Live frontend URL: ADD_FRONTEND_URL
-- Backend API URL: ADD_BACKEND_URL
