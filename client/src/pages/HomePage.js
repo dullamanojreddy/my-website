@@ -13,7 +13,7 @@ function HomePage() {
   const [typedText, setTypedText] = useState("");
   const displayName = profile?.name || "Dulla Manoj Reddy";
   const roles = ["Full Stack MERN Developer", "UI Engineer", "Problem Solver"];
-  const profileImagePath = "/myimage2.jpeg";
+  const profileImagePath = "/assets/myimage2.jpeg";
 
   const loadData = useCallback(async () => {
     try {

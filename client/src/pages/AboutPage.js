@@ -50,7 +50,7 @@ function AboutPage() {
       <div className="about-grid card-surface">
         <div className="profile-card">
           <img
-            src="/myimage2.jpeg"
+            src="/assets/myimage2.jpeg"
             alt={profile?.name}
             className="round-profile"
           />

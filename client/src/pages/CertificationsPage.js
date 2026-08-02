@@ -104,7 +104,7 @@ function CertificationsPage() {
             </div>
             <iframe
               title={activeCertificate.title}
-              src={`${API_BASE_URL}${activeCertificate.certificatePath}`}
+              src={activeCertificate.certificatePath}
             />
           </div>
         </div>
