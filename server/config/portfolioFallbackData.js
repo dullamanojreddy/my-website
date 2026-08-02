@@ -14,11 +14,41 @@ const profile = {
 };
 
 const skills = [
-  { name: "Full Stack Development", proficiency: 90, icon: "stack", category: "Development" },
-  { name: "Java", proficiency: 85, icon: "java", category: "Programming" },
-  { name: "Python", proficiency: 80, icon: "python", category: "Programming" },
-  { name: "C", proficiency: 78, icon: "code", category: "Programming" },
-  { name: "DBMS", proficiency: 82, icon: "database", category: "Database" }
+  {
+    name: "Full Stack Development",
+    proficiency: 90,
+    icon: "stack",
+    category: "Development",
+    points: ["React.js", "Node.js", "Express.js", "REST APIs"]
+  },
+  {
+    name: "Java",
+    proficiency: 85,
+    icon: "java",
+    category: "Programming",
+    points: ["Core Java", "OOP Concepts", "Collections", "Exception Handling"]
+  },
+  {
+    name: "Python",
+    proficiency: 80,
+    icon: "python",
+    category: "Programming",
+    points: ["Core Python", "AI & ML Development", "Automation", "API Development"]
+  },
+  {
+    name: "C",
+    proficiency: 78,
+    icon: "code",
+    category: "Programming",
+    points: ["Problem Solving", "Algorithms", "Memory Management", "System Programming"]
+  },
+  {
+    name: "DBMS",
+    proficiency: 82,
+    icon: "database",
+    category: "Database",
+    points: ["MySQL", "Query Optimization", "Normalization", "Database Design"]
+  }
 ];
 
 const projects = [
