@@ -53,8 +53,10 @@ coverage/
 .cache/
 .parcel-cache/
 
-# Binary / media assets (serve from CDN)
-assets/
+# Root-level assets folder (not needed in git — moved to client/public/assets/)
+/assets/
+# Allow frontend public assets (PDFs, profile image)
+!client/public/assets/
 
 # Misc junk
 old-backup/
