@@ -2,7 +2,7 @@
   "name": "portfolio-client",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://dullamanojreddy.github.io/my-website",
+  "homepage": ".",
   "dependencies": {
     "axios": "^1.7.9",
     "lucide-react": "^1.9.0",
