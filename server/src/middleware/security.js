@@ -1,8 +1,9 @@
+const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
-const { validateEnv } = require("../config/env");
+const validateEnv = require("../config/env");
 
 const env = validateEnv();
 

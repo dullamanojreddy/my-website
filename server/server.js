@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { app, connectDB } = require("./src/app");
-const { validateEnv } = require("./src/config/env");
+const validateEnv = require("./src/config/env");
 
 const env = validateEnv();
 
