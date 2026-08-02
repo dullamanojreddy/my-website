@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FiArrowRight, FiMail } from "react-icons/fi";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ProjectCarousel from "../components/ProjectCarousel";
-import { API_BASE_URL, getProfile, getProjects } from "../services/api";
+import { getProfile, getProjects } from "../services/api";
 
 function HomePage() {
   const [profile, setProfile] = useState(null);
@@ -13,7 +13,7 @@ function HomePage() {
   const [typedText, setTypedText] = useState("");
   const displayName = profile?.name || "Dulla Manoj Reddy";
   const roles = ["Full Stack MERN Developer", "UI Engineer", "Problem Solver"];
-  const profileImagePath = `${API_BASE_URL}/assets/myimage2.jpeg`;
+  const profileImagePath = "/myimage2.jpeg";
 
   const loadData = useCallback(async () => {
     try {
@@ -26,11 +26,11 @@ function HomePage() {
       ]);
 
       if (profileResult.status === "fulfilled") {
-        setProfile(profileResult.value.data);
+        setProfile(profileResult.value.data.data);
       }
 
       if (projectResult.status === "fulfilled") {
-        setProjects(projectResult.value.data);
+        setProjects(projectResult.value.data.data);
       }
 
       if (profileResult.status === "rejected" && projectResult.status === "rejected") {

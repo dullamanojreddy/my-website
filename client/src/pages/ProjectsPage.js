@@ -12,7 +12,7 @@ function ProjectsPage() {
     const loadProjects = async () => {
       try {
         const response = await getProjects();
-        setProjects(response.data);
+        setProjects(response.data.data);
       } catch (requestError) {
         setError("Unable to load projects right now.");
       } finally {

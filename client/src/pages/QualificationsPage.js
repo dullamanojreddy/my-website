@@ -12,7 +12,7 @@ function QualificationsPage() {
     const loadQualifications = async () => {
       try {
         const response = await getQualifications();
-        setQualifications(response.data);
+        setQualifications(response.data.data);
       } catch (requestError) {
         setError("Failed to fetch qualification details.");
       } finally {

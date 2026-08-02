@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FiExternalLink, FiX } from "react-icons/fi";
 import { Code2, Network, ScrollText, ShieldCheck } from "lucide-react";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { API_BASE_URL, getCertifications } from "../services/api";
+import { getCertifications } from "../services/api";
 
 const getCertificateVisual = (title = "") => {
   const normalizedTitle = title.toLowerCase();
@@ -32,7 +32,7 @@ function CertificationsPage() {
     const loadCertifications = async () => {
       try {
         const response = await getCertifications();
-        setCertifications(response.data);
+        setCertifications(response.data.data);
       } catch (requestError) {
         setError("Unable to load certifications at the moment.");
       } finally {

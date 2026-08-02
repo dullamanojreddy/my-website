@@ -27,7 +27,7 @@ function SkillsPage() {
     const loadSkills = async () => {
       try {
         const response = await getSkills();
-        setSkills(response.data);
+        setSkills(response.data.data);
       } catch (requestError) {
         setError("Could not load skills right now.");
       } finally {

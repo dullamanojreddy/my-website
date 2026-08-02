@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { API_BASE_URL, getProfile, getProjects, getSkills } from "../services/api";
+import { getProfile, getProjects, getSkills } from "../services/api";
 
 function AboutPage() {
   const [profile, setProfile] = useState(null);
@@ -18,9 +18,9 @@ function AboutPage() {
           getSkills()
         ]);
 
-        setProfile(profileResponse.data);
-        setProjects(projectResponse.data);
-        setSkills(skillResponse.data);
+        setProfile(profileResponse.data.data);
+        setProjects(projectResponse.data.data);
+        setSkills(skillResponse.data.data);
       } catch (requestError) {
         setError("Failed to load profile information.");
       } finally {
@@ -50,7 +50,7 @@ function AboutPage() {
       <div className="about-grid card-surface">
         <div className="profile-card">
           <img
-            src={`${API_BASE_URL}/assets/myimage2.jpeg`}
+            src="/myimage2.jpeg"
             alt={profile?.name}
             className="round-profile"
           />
