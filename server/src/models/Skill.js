@@ -1,0 +1,16 @@
+const mongoose = require("mongoose");
+
+const skillSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, trim: true },
+    proficiency: { type: Number, min: 0, max: 100, default: 0 },
+    icon: { type: String, default: "code" },
+    category: { type: String, default: "General" },
+    points: { type: [String], default: [] }
+  },
+  { timestamps: true, collection: "skills" }
+);
+
+skillSchema.index({ proficiency: -1 });
+
+module.exports = mongoose.model("Skill", skillSchema);

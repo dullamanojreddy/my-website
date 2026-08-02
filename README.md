@@ -1,108 +1,168 @@
-# Personal Portfolio Website (MERN Stack)
+# MERN Portfolio — Production Architecture
 
-This project is a full MERN stack personal portfolio website for **Dulla Manoj Reddy**.
-It includes dynamic profile information, skills, projects, certifications, and contact form submission.
+Production-ready MERN portfolio for **Dulla Manoj Reddy** — Full Stack Developer.
+
+- **Frontend**: React (Create React App) → **Vercel**
+- **Backend**: Express + MongoDB Atlas → **Render**
+- **Database**: MongoDB Atlas
+
+## Quick Start
+
+### Prerequisites
+- Node.js >= 18
+- MongoDB Atlas cluster
+- Git
+
+### Installation
+
+```bash
+# Clone repository
+git clone https://github.com/dullamanojreddy/my-website.git
+cd my-website
+
+# Install server dependencies
+cd server
+npm install
+cp .env.example .env
+# Edit .env with your MongoDB URI and CLIENT_URL
+
+# Install client dependencies
+cd ../client
+npm install
+cp .env.example .env
+# Edit .env with your backend API URL
+```
+
+### Running Locally
+
+```bash
+# Terminal 1 — Start backend
+cd server
+npm run dev
+
+# Terminal 2 — Start frontend
+cd client
+npm start
+```
+
+Frontend: `http://localhost:3000`  
+Backend: `http://localhost:5000`
+
+### Seeding Database
+
+```bash
+cd server
+npm run seed
+```
+
+To reset all collections:
+
+```bash
+npm run seed:destroy
+```
+
+## Project Structure
+
+```
+portfolio/
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   ├── data/
+│   │   ├── utils/
+│   │   ├── context/
+│   │   └── App.js
+│   ├── .env
+│   └── package.json
+├── server/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── seed/
+│   │   └── app.js
+│   ├── server.js
+│   ├── .env
+│   └── package.json
+├── docs/
+│   ├── PROJECT_CONTEXT.md
+│   ├── DEPLOYMENT_GUIDE.md
+│   ├── API_REFERENCE.md
+│   └── ARCHITECTURE.md
+└── README.md
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | Health check |
+| GET | `/api/portfolio/profile` | Get profile data |
+| GET | `/api/portfolio/skills` | Get skills data |
+| GET | `/api/portfolio/projects` | Get projects data |
+| GET | `/api/portfolio/certifications` | Get certifications data |
+| POST | `/api/contact` | Submit contact message |
+
+## Deployment
+
+See [docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md) for step-by-step deployment instructions.
+
+### Environment Variables
+
+**Server (`server/.env`)**:
+```env
+PORT=5000
+NODE_ENV=production
+MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/portfolio
+CLIENT_URL=https://your-frontend-url.vercel.app
+```
+
+**Client (`client/.env`)**:
+```env
+REACT_APP_API_URL=https://your-backend-url.onrender.com
+```
 
 ## Tech Stack
 
-- Frontend: React, React Router, React Icons, Axios
-- Backend: Node.js, Express
-- Database: MongoDB Atlas (Mongoose)
+### Frontend
+- React 18
+- React Router 6
+- Axios
+- Lucide React + React Icons
+- Custom CSS (aurora/neon theme)
 
-## Folder Structure
+### Backend
+- Node.js
+- Express 4
+- Mongoose 8
+- Helmet
+- CORS
+- express-rate-limit
+- express-mongo-sanitize
 
-project/
-- client/
-  - src/
-    - components/
-    - pages/
-    - services/
-    - App.js
-    - index.js
-- server/
-  - config/
-  - controllers/
-  - middleware/
-  - models/
-  - routes/
-  - server.js
-- assets/
-- .env.example
-- package.json
+### Database
+- MongoDB Atlas
 
-## Features Implemented
+### Hosting
+- Vercel (frontend)
+- Render (backend)
 
-- Responsive React navigation with active links and hamburger menu
-- Pages: Home, About, Qualifications, Skills, Certifications, Contact
-- Dynamic data fetching from backend APIs
-- Qualifications table with status badges
-- Skills progress bars with icons
-- Certification cards + modal certificate preview
-- Controlled contact form with frontend validation
-- Backend validation (mobile exactly 10 digits, no empty fields)
-- MongoDB collections: profile, skills, projects, certifications, messages
-- Loading indicators and error messages
+## Documentation
 
-## Required APIs
+- [Project Context](docs/PROJECT_CONTEXT.md)
+- [Deployment Guide](docs/DEPLOYMENT_GUIDE.md)
+- [API Reference](docs/API_REFERENCE.md)
+- [Architecture](docs/ARCHITECTURE.md)
 
-- GET /api/profile
-- GET /api/skills
-- GET /api/projects
-- POST /api/contact
+## License
 
-Additional APIs used:
-- GET /api/qualifications
-- GET /api/certifications
-- GET /api/health
-
-## Setup Instructions
-
-### 1) Configure Environment
-
-Create `.env` inside `server/`:
-
-MONGODB_URI=your_mongodb_atlas_connection_string
-PORT=5000
-CLIENT_URL=http://localhost:3000
-
-Create `.env` inside `client/` (optional):
-
-REACT_APP_API_BASE_URL=http://localhost:5000
-
-### 2) Install Dependencies
-
-At project root:
-
-npm run install:all
-
-### 3) Run Application
-
-At project root:
-
-npm run dev
-
-- Frontend: http://localhost:3000
-- Backend: http://localhost:5000
-
-## Deployment Guide
-
-### Frontend (Netlify/Vercel/GitHub Pages)
-
-- Deploy `client/`
-- Set environment variable:
-  - REACT_APP_API_BASE_URL=https://your-backend-url
-
-### Backend (Render/Railway/Cyclic)
-
-- Deploy `server/`
-- Set environment variables:
-  - MONGODB_URI
-  - PORT
-  - CLIENT_URL
-
-### Database (MongoDB Atlas)
-
-- Create cluster and database
-- Add network access and DB user
-- Copy connection string into `MONGODB_URI`
-
+MIT
