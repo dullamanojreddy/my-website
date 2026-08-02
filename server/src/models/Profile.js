@@ -10,7 +10,7 @@ const profileSchema = new mongoose.Schema(
     about: { type: [String], required: true },
     photoPath: { type: String, default: "/assets/myphoto.jpg" }
   },
-  { timestamps: true, collection: "profiles" }
+  { timestamps: true, collection: "profile" }
 );
 
 module.exports = mongoose.model("Profile", profileSchema);

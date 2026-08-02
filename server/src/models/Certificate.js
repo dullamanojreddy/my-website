@@ -8,7 +8,7 @@ const certificateSchema = new mongoose.Schema(
     status: { type: String, default: "Completed" },
     certificatePath: { type: String, default: "" }
   },
-  { timestamps: true, collection: "certificates" }
+  { timestamps: true, collection: "certifications" }
 );
 
 certificateSchema.index({ createdAt: -1 });
