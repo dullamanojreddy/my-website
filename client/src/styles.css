@@ -1472,6 +1472,48 @@ p {
   gap: 0.8rem;
 }
 
+/* Friendly "site is temporarily down" screen */
+.site-down {
+  min-height: 62vh;
+  display: grid;
+  place-items: center;
+}
+
+.site-down-panel {
+  max-width: 30rem;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: clamp(1.8rem, 4vw, 3rem);
+}
+
+.site-down-icon {
+  width: 3.4rem;
+  height: 3.4rem;
+  margin: 0 auto 1.1rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  color: var(--aurora-cyan);
+  border: 1px solid rgba(45, 189, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(45, 189, 255, 0.08);
+  box-shadow: 0 0 18px rgba(45, 189, 255, 0.22);
+}
+
+.site-down-title {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  margin: 0 0 0.6rem;
+  color: var(--frost-white);
+}
+
+.site-down-message {
+  margin: 0 0 1.4rem;
+  color: var(--muted-ice);
+  line-height: 1.65;
+}
+
 .submit-btn:disabled {
   opacity: 0.74;
   cursor: not-allowed;

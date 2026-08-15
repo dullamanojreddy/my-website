@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FiArrowRight, FiMail } from "react-icons/fi";
+import { FiArrowRight, FiMail, FiWifiOff } from "react-icons/fi";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ConnectWithMeSection from "../components/ConnectWithMeSection";
 import { getProfile } from "../services/api";
@@ -72,16 +72,30 @@ function HomePage() {
     return <LoadingSpinner label="Preparing your portfolio experience..." />;
   }
 
-  return (
-    <section className="page-wrap home-page">
-      {error && (
-        <div className="card-surface error-banner">
-          <p className="error-text">{error}</p>
-          <button type="button" className="btn secondary" onClick={loadData}>
-            Retry
+  // Show a friendly "site is down" screen only when the API genuinely fails.
+  // On success, no error banner is rendered at all.
+  if (error) {
+    return (
+      <section className="page-wrap home-page site-down">
+        <div className="card-surface site-down-panel" role="alert">
+          <div className="site-down-icon" aria-hidden="true">
+            <FiWifiOff />
+          </div>
+          <h2 className="site-down-title">We&rsquo;ll be back online soon</h2>
+          <p className="site-down-message">
+            Our website is temporarily down for maintenance. It will be online soon — please
+            check back in a little while.
+          </p>
+          <button type="button" className="btn primary" onClick={loadData}>
+            Try Again
           </button>
         </div>
-      )}
+      </section>
+    );
+  }
+
+  return (
+    <section className="page-wrap home-page">
       <div className="hero card-surface">
         <div className="hero-showcase">
           <div className="hero-portrait">
