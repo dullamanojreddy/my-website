@@ -5,60 +5,49 @@ import {
   Code2,
   Database,
   Cpu,
-  Globe,
   Layers,
-  Box,
   Cloud,
-  Terminal,
-  Braces,
-  FileCode2,
-  Server,
-  GitBranch,
-  FileText,
   BarChart3,
-  Cpu as CpuIcon,
   Search as SearchIcon
 } from "lucide-react";
 
-// Technology icon mapping using Lucide React icons
+// Real Devicons SVG logos for each technology
+const techLogoMap = {
+  "Java":                         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "Python":                       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  "C++":                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+  "JavaScript":                   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  "SQL":                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  "HTML":                         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  "CSS":                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  "DBMS":                         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  "Operating Systems":            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+  "Computer Networks":            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+  "React.js":                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "Node.js":                      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "Express.js":                   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  "FastAPI":                      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+  "Tailwind CSS":                 "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  "Socket.IO":                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg",
+  "MongoDB":                      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  "MySQL":                        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  "Git":                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "GitHub":                       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  "VS Code":                      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+  "Jupyter Notebook":             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
+  "Google Colab":                 "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+  "NumPy":                        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
+  "Pandas":                       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
+  "TensorFlow":                   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+};
+
+// Fallback lucide icons for skills without a devicon logo
 const techIconMap = {
-  // Programming Languages
-  "Java": { icon: Code2, color: "#f89820" },
-  "Python": { icon: FileCode2, color: "#3776ab" },
-  "C++": { icon: Cpu, color: "#00599c" },
-  "JavaScript": { icon: Braces, color: "#f7df1e" },
-  "SQL": { icon: Database, color: "#336791" },
-  "HTML": { icon: Globe, color: "#e34f26" },
-  "CSS": { icon: FileText, color: "#1572b6" },
-  
-  // Core CS
   "Data Structures & Algorithms": { icon: BarChart3, color: "#2dbdff" },
-  "Object-Oriented Programming": { icon: Layers, color: "#a855f7" },
-  "DBMS": { icon: Database, color: "#336791" },
-  "Operating Systems": { icon: CpuIcon, color: "#00d4ff" },
-  "Computer Networks": { icon: Cloud, color: "#25c9b0" },
-  
-  // Frameworks & Technologies
-  "React.js": { icon: Box, color: "#61dafb" },
-  "Node.js": { icon: Server, color: "#339933" },
-  "Express.js": { icon: Server, color: "#000000" },
-  "FastAPI": { icon: Terminal, color: "#009688" },
-  "Tailwind CSS": { icon: FileText, color: "#06b6d4" },
-  "Socket.IO": { icon: Cloud, color: "#010101" },
-  
-  // Databases
-  "MongoDB": { icon: Database, color: "#47a248" },
-  "MySQL": { icon: Database, color: "#4479a1" },
-  
-  // Tools & Libraries
-  "Git": { icon: GitBranch, color: "#f05032" },
-  "GitHub": { icon: Box, color: "#ffffff" },
-  "VS Code": { icon: Terminal, color: "#007acc" },
-  "Jupyter Notebook": { icon: FileText, color: "#f37626" },
-  "Google Colab": { icon: Cloud, color: "#f9ab00" },
-  "NumPy": { icon: BarChart3, color: "#013243" },
-  "Pandas": { icon: BarChart3, color: "#150458" },
-  "TensorFlow": { icon: CpuIcon, color: "#ff6f00" }
+  "Object-Oriented Programming":  { icon: Layers,    color: "#a855f7" },
+  "DBMS":                         { icon: Database,  color: "#336791" },
+  "Operating Systems":            { icon: Cpu,       color: "#00d4ff" },
+  "Computer Networks":            { icon: Cloud,     color: "#25c9b0" },
 };
 
 // Skills data structure organized by categories
@@ -288,38 +277,54 @@ function SkillsPage() {
                 {/* Skills Badges */}
                 <div className="skills-badges-grid">
                   {categoryData.skills.map((skill, index) => {
-                    const techInfo = techIconMap[skill] || { icon: Code2, color: "#2dbdff" };
-                    const TechIcon = techInfo.icon;
-                    
+                    const logoUrl = techLogoMap[skill];
+                    const fallback = techIconMap[skill] || { icon: Code2, color: "#2dbdff" };
+                    const badgeColor = fallback.color || "#2dbdff";
+                    const FallbackIcon = fallback.icon;
+                    const floatDur  = (3.5 + (index % 5) * 0.6).toFixed(1);
+                    const floatDelay = ((index * 0.35) % 3).toFixed(1);
+
                     return (
                       <motion.div
                         key={skill}
                         className="skill-badge"
                         variants={badgeVariants}
-                        whileHover={{ 
+                        whileHover={{
                           scale: 1.08,
-                          y: -4,
+                          y: -6,
                           transition: { duration: 0.2 }
                         }}
                         style={{
-                          "--badge-color": techInfo.color,
-                          animationDelay: `${index * 0.05}s`
+                          "--badge-color": badgeColor,
+                          "--float-dur":   `${floatDur}s`,
+                          "--float-delay": `${floatDelay}s`,
                         }}
                       >
-                        <div 
+                        <div
                           className="badge-icon-wrapper"
                           style={{
-                            background: `linear-gradient(135deg, ${techInfo.color}22, ${techInfo.color}44)`,
-                            boxShadow: `0 0 20px ${techInfo.color}33`
+                            background: `linear-gradient(135deg, ${badgeColor}22, ${badgeColor}44)`,
+                            boxShadow:  `0 0 16px ${badgeColor}33`,
                           }}
                         >
-                          <TechIcon size={18} color={techInfo.color} />
+                          {logoUrl ? (
+                            <img
+                              src={logoUrl}
+                              alt={skill}
+                              width={20}
+                              height={20}
+                              style={{ objectFit: "contain", display: "block" }}
+                              loading="lazy"
+                            />
+                          ) : (
+                            <FallbackIcon size={18} color={badgeColor} />
+                          )}
                         </div>
                         <span className="badge-text">{skill}</span>
-                        <div 
+                        <div
                           className="badge-glow"
                           style={{
-                            background: `radial-gradient(circle, ${techInfo.color}44, transparent)`
+                            background: `radial-gradient(circle, ${badgeColor}44, transparent)`
                           }}
                         />
                       </motion.div>

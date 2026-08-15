@@ -2330,18 +2330,18 @@ p {
 .skills-badges-grid {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 /* Skill Badge */
 .skill-badge {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.7rem 0.9rem;
+  padding: 0.65rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.03);
@@ -2349,6 +2349,14 @@ p {
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-standard);
   overflow: hidden;
+  white-space: nowrap;
+  animation: badge-float var(--float-dur, 4s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
 }
 
 .skill-badge::before {
@@ -2395,8 +2403,6 @@ p {
   color: var(--frost-white);
   letter-spacing: 0.02em;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .badge-glow {
@@ -2434,7 +2440,6 @@ p {
   }
 
   .skills-badges-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 0.6rem;
   }
 
@@ -2477,20 +2482,16 @@ p {
 
 @media (max-width: 480px) {
   .skills-badges-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
   }
 
   .skill-badge {
-    padding: 0.55rem 0.6rem;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    padding: 0.55rem 0.8rem;
     gap: 0.4rem;
   }
 
   .badge-text {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
   }
 
   .category-tabs {
