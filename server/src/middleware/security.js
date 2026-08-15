@@ -47,6 +47,9 @@ const securityMiddleware = (app) => {
   app.use(express.json({ limit: "10kb" }));
   app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
+  // Trust first proxy for X-Forwarded-For header (Render sets this)
+  app.set('trust proxy', 1);
+
   const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
