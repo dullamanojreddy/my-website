@@ -7,9 +7,11 @@ import {
   Cpu,
   Layers,
   Cloud,
+  Box,
   BarChart3,
   Search as SearchIcon
 } from "lucide-react";
+
 
 // Real Devicons SVG logos for each technology
 const techLogoMap = {
