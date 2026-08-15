@@ -2,12 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiMail } from "react-icons/fi";
 import LoadingSpinner from "../components/LoadingSpinner";
-import ProjectCarousel from "../components/ProjectCarousel";
-import { getProfile, getProjects } from "../services/api";
+import ConnectWithMeSection from "../components/ConnectWithMeSection";
+import { getProfile } from "../services/api";
 
 function HomePage() {
   const [profile, setProfile] = useState(null);
-  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [typedText, setTypedText] = useState("");
@@ -20,26 +19,12 @@ function HomePage() {
       setError("");
       setLoading(true);
 
-      const [profileResult, projectResult] = await Promise.allSettled([
-        getProfile(),
-        getProjects()
-      ]);
+      const profileResult = await getProfile();
 
       if (profileResult.status === "fulfilled") {
         setProfile(profileResult.value.data.data);
-      }
-
-      if (projectResult.status === "fulfilled") {
-        setProjects(projectResult.value.data.data);
-      }
-
-      if (profileResult.status === "rejected" && projectResult.status === "rejected") {
+      } else {
         setError("Unable to load portfolio data. Please try again.");
-      } else if (
-        profileResult.status === "rejected" ||
-        projectResult.status === "rejected"
-      ) {
-        setError("Some sections could not load. You can still browse the page.");
       }
     } catch (requestError) {
       setError("Unable to load portfolio data. Please try again.");
@@ -138,7 +123,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <ProjectCarousel projects={projects} />
+      <ConnectWithMeSection />
     </section>
   );
 }
