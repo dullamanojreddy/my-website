@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { Component, lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import LoadingSpinner from "./components/LoadingSpinner";
@@ -11,8 +11,36 @@ const ProjectsPage       = lazy(() => import("./pages/ProjectsPage"));
 const CertificationsPage = lazy(() => import("./pages/CertificationsPage"));
 const ContactPage        = lazy(() => import("./pages/ContactPage"));
 
+// Catches lazy-load failures (chunk 404, network drop) so the app never goes blank
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ minHeight: "60vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem", color: "#eef3ff" }}>
+          <p style={{ opacity: 0.7 }}>Something went wrong loading this page.</p>
+          <button
+            onClick={() => { this.setState({ hasError: false }); window.location.reload(); }}
+            style={{ padding: "0.6rem 1.4rem", borderRadius: "999px", border: "1px solid rgba(46,242,255,0.4)", background: "rgba(46,242,255,0.08)", color: "#eef3ff", cursor: "pointer" }}
+          >
+            Reload
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 // Stable star data — computed once, never recreated on scroll re-renders
 const STAR_COUNT = 30;
+
 
 function App() {
   const location = useLocation();
@@ -152,17 +180,19 @@ function App() {
 
       <main className="main-layout">
         <section key={location.pathname} className="route-stage">
-          <Suspense fallback={<LoadingSpinner label="Loading..." />}>
-            <Routes>
-              <Route path="/"               element={<HomePage />} />
-              <Route path="/about"          element={<AboutPage />} />
-              <Route path="/skills"         element={<SkillsPage />} />
-              <Route path="/projects"       element={<ProjectsPage />} />
-              <Route path="/certifications" element={<CertificationsPage />} />
-              <Route path="/contact"        element={<ContactPage />} />
-              <Route path="*"              element={<Navigate to="/" replace />} />
-            </Routes>
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingSpinner label="Loading..." />}>
+              <Routes>
+                <Route path="/"               element={<HomePage />} />
+                <Route path="/about"          element={<AboutPage />} />
+                <Route path="/skills"         element={<SkillsPage />} />
+                <Route path="/projects"       element={<ProjectsPage />} />
+                <Route path="/certifications" element={<CertificationsPage />} />
+                <Route path="/contact"        element={<ContactPage />} />
+                <Route path="*"              element={<Navigate to="/" replace />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </section>
       </main>
     </div>
