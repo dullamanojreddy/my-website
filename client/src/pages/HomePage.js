@@ -19,13 +19,8 @@ function HomePage() {
       setError("");
       setLoading(true);
 
-      const profileResult = await getProfile();
-
-      if (profileResult.status === "fulfilled") {
-        setProfile(profileResult.value.data.data);
-      } else {
-        setError("Unable to load portfolio data. Please try again.");
-      }
+      const profileResponse = await getProfile();
+      setProfile(profileResponse.data.data);
     } catch (requestError) {
       setError("Unable to load portfolio data. Please try again.");
     } finally {
