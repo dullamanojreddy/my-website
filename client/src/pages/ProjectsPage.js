@@ -29,6 +29,10 @@ function ProjectsPage() {
     return <LoadingSpinner label="Loading projects..." />;
   }
 
+  const sortedProjects = [...projects].sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
+
   return (
     <section className="page-wrap">
       <div className="page-top">
@@ -37,7 +41,8 @@ function ProjectsPage() {
       </div>
 
       <div className="projects-grid">
-        {projects.map((project) => (
+        {sortedProjects.map((project) => (
+
           <article className="card-surface project-tile" key={project.title}>
             <div className="project-image-shell" aria-hidden="true">
               <div className="project-image-glow" />
