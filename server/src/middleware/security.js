@@ -8,10 +8,30 @@ const validateEnv = require("../config/env");
 const env = validateEnv();
 
 /**
- * CORS configuration — only allows the configured frontend origin.
+ * CORS configuration — allows localhost in development, production URL in production.
  */
+const getCorsOrigin = () => {
+  if (env.env === "production") {
+    return env.clientUrl;
+  }
+
+  return (origin, callback) => {
+    const allowedOrigins = [
+      env.clientUrl,
+      "http://localhost:3000",
+      "http://127.0.0.1:3000"
+    ];
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+  };
+};
+
 const corsOptions = {
-  origin: env.clientUrl,
+  origin: getCorsOrigin(),
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
