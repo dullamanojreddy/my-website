@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 import { FiGithub, FiPlay } from "react-icons/fi";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { getProjects } from "../services/api";
+import { INITIAL_PROJECTS } from "../data/projectsData";
 
 function ProjectsPage() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(INITIAL_PROJECTS);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadProjects = async () => {
       try {
         const response = await getProjects();
-        setProjects(response.data.data);
+        if (response.data?.data && response.data.data.length > 0) {
+          setProjects(response.data.data);
+        }
       } catch {
-        // Keep rendering gracefully if the API is temporarily unavailable.
+        // Keep rendering gracefully with fallback projects if API is offline.
       } finally {
         setLoading(false);
       }
@@ -21,6 +24,7 @@ function ProjectsPage() {
 
     loadProjects();
   }, []);
+
 
   if (loading) {
     return <LoadingSpinner label="Loading projects..." />;

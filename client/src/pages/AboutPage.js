@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { getProfile, getProjects, getSkills } from "../services/api";
+import { INITIAL_PROJECTS } from "../data/projectsData";
 
 function AboutPage() {
   const [profile, setProfile] = useState(null);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(INITIAL_PROJECTS);
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,8 +19,12 @@ function AboutPage() {
         ]);
 
         setProfile(profileResponse.data.data);
-        setProjects(projectResponse.data.data);
-        setSkills(skillResponse.data.data);
+        if (projectResponse.data?.data && projectResponse.data.data.length > 0) {
+          setProjects(projectResponse.data.data);
+        }
+        if (skillResponse.data?.data) {
+          setSkills(skillResponse.data.data);
+        }
       } catch {
         // Keep rendering gracefully if the API is temporarily unavailable.
       } finally {
@@ -29,6 +34,7 @@ function AboutPage() {
 
     loadProfile();
   }, []);
+
 
   if (loading) {
     return <LoadingSpinner label="Loading profile..." />;
