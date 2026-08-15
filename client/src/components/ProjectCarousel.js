@@ -1,5 +1,6 @@
 import { FiArrowLeft, FiArrowRight, FiGithub, FiPlay } from "react-icons/fi";
-import { useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
+
 
 function ProjectCarousel({ projects = [] }) {
   const featured = useMemo(
@@ -75,4 +76,4 @@ function ProjectCarousel({ projects = [] }) {
   );
 }
 
-export default ProjectCarousel;
+export default memo(ProjectCarousel);

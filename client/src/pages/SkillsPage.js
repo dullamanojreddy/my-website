@@ -166,21 +166,24 @@ function SkillsPage() {
 
   const categories = ["All", ...Object.keys(skillsData)];
 
+  // Particle positions computed once — stable across search/filter re-renders
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }, () => ({
+        left: `${Math.random() * 100}%`,
+        top:  `${Math.random() * 100}%`,
+        animationDelay:    `${Math.random() * 20}s`,
+        animationDuration: `${15 + Math.random() * 10}s`,
+      })),
+    [] // intentionally empty — positions are random-on-mount, never need recalculating
+  );
+
   return (
     <section className="page-wrap card-surface">
-      {/* Floating background particles */}
+      {/* Floating background particles — positions memoized, stable across re-renders */}
       <div className="particles-container">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 20}s`,
-              animationDuration: `${15 + Math.random() * 10}s`
-            }}
-          />
+        {particles.map((style, i) => (
+          <div key={i} className="particle" style={style} />
         ))}
       </div>
 

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
+
 import { createPortal } from "react-dom";
 import { NavLink, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -126,4 +127,5 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default memo(Navbar);
+

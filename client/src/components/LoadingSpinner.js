@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function LoadingSpinner({ label = "Loading..." }) {
   return (
     <div className="loading-wrap" role="status" aria-live="polite">
@@ -12,4 +14,4 @@ function LoadingSpinner({ label = "Loading..." }) {
   );
 }
 
-export default LoadingSpinner;
+export default memo(LoadingSpinner);

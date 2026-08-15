@@ -1,4 +1,6 @@
+import { memo } from "react";
 import { User, Code, Mail } from "lucide-react";
+
 import { motion } from "framer-motion";
 
 const cardVariants = {
@@ -117,4 +119,5 @@ function ConnectWithMeSection() {
   );
 }
 
-export default ConnectWithMeSection;
+export default memo(ConnectWithMeSection);
+

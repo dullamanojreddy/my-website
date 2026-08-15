@@ -99,7 +99,7 @@ function HomePage() {
       <div className="hero card-surface">
         <div className="hero-showcase">
           <div className="hero-portrait">
-            <img src={profileImagePath} alt={displayName} className="hero-image" />
+            <img src={profileImagePath} alt={displayName} className="hero-image" fetchpriority="high" loading="eager" />
           </div>
           <div className="hero-overlay">
             <div className="hero-copy">

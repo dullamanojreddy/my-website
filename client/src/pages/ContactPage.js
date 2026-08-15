@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import { FiCheck } from "react-icons/fi";
 import { submitContact } from "../services/api";
 
@@ -56,13 +57,14 @@ function ContactPage() {
     return Object.keys(currentErrors).length === 0;
   };
 
-  const handleChange = (event) => {
+  const handleChange = useCallback((event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
+  }, []);
 
-  const handleSubmit = async (event) => {
+
+  const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
     setServerMessage("");
     setSubmitState("idle");
@@ -92,7 +94,8 @@ function ContactPage() {
     } finally {
       setSubmitting(false);
     }
-  };
+  }, [formData, validateForm]);
+
 
   return (
     <section className="page-wrap">

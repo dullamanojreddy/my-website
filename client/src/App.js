@@ -1,16 +1,34 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import SkillsPage from "./pages/SkillsPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import CertificationsPage from "./pages/CertificationsPage";
-import ContactPage from "./pages/ContactPage";
+import LoadingSpinner from "./components/LoadingSpinner";
+
+// Route-level code splitting — each page loads only when first visited
+const HomePage           = lazy(() => import("./pages/HomePage"));
+const AboutPage          = lazy(() => import("./pages/AboutPage"));
+const SkillsPage         = lazy(() => import("./pages/SkillsPage"));
+const ProjectsPage       = lazy(() => import("./pages/ProjectsPage"));
+const CertificationsPage = lazy(() => import("./pages/CertificationsPage"));
+const ContactPage        = lazy(() => import("./pages/ContactPage"));
+
+// Stable star data — computed once, never recreated on scroll re-renders
+const STAR_COUNT = 30;
 
 function App() {
   const location = useLocation();
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Memoize star positions so they are stable across re-renders triggered by
+  // scrollProgress state updates (was recreating 30 objects ~60× per second)
+  const stars = useMemo(
+    () =>
+      Array.from({ length: STAR_COUNT }, (_, index) => ({
+        x: `${(index * 13) % 100}%`,
+        y: `${(index * 29) % 100}%`,
+        delay: `${(index % 7) * 0.7}s`,
+      })),
+    [] // empty deps — positions are deterministic, never need to change
+  );
 
   useEffect(() => {
     const updateScrollProgress = () => {
@@ -112,14 +130,14 @@ function App() {
     <div className="app-shell">
       <div className="aurora-layer" aria-hidden="true" />
       <div className="starfield" aria-hidden="true">
-        {Array.from({ length: 30 }).map((_, index) => (
+        {stars.map((star, index) => (
           <span
             key={index}
             className="star"
             style={{
-              "--x": `${(index * 13) % 100}%`,
-              "--y": `${(index * 29) % 100}%`,
-              "--delay": `${(index % 7) * 0.7}s`
+              "--x": star.x,
+              "--y": star.y,
+              "--delay": star.delay,
             }}
           />
         ))}
@@ -134,15 +152,17 @@ function App() {
 
       <main className="main-layout">
         <section key={location.pathname} className="route-stage">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/skills" element={<SkillsPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/certifications" element={<CertificationsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <Suspense fallback={<LoadingSpinner label="Loading..." />}>
+            <Routes>
+              <Route path="/"               element={<HomePage />} />
+              <Route path="/about"          element={<AboutPage />} />
+              <Route path="/skills"         element={<SkillsPage />} />
+              <Route path="/projects"       element={<ProjectsPage />} />
+              <Route path="/certifications" element={<CertificationsPage />} />
+              <Route path="/contact"        element={<ContactPage />} />
+              <Route path="*"              element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
         </section>
       </main>
     </div>
