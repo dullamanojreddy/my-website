@@ -1,6 +1,8 @@
 const { validationResult } = require("express-validator");
 const mongoose = require("mongoose");
 const Message = require("../models/Message");
+const { sendContactNotification } = require("../src/services/whatsappService");
+
 
 const isDatabaseReady = () => mongoose.connection.readyState === 1;
 
@@ -28,7 +30,13 @@ const createMessage = async (req, res) => {
       message
     });
 
+    // Trigger WhatsApp notification to owner
+    sendContactNotification({ name, email, mobile, message }).catch((err) => {
+      console.error("WhatsApp notification error:", err.message);
+    });
+
     return res.status(201).json({
+
       success: true,
       message: "Contact details submitted successfully.",
       data: savedMessage
