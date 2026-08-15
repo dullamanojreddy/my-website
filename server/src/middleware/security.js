@@ -8,21 +8,35 @@ const validateEnv = require("../config/env");
 const env = validateEnv();
 
 /**
- * CORS configuration — allows localhost in development, production URL in production.
+ * CORS configuration — allows configured production URL(s), any Vercel
+ * deployment (production + preview), and localhost in development.
+ *
+ * CLIENT_URL may contain a single origin or a comma-separated list, e.g.
+ *   CLIENT_URL=https://my-site.vercel.app,https://other.example.com
  */
 const getCorsOrigin = () => {
-  if (env.env === "production") {
-    return env.clientUrl;
-  }
+  const configuredOrigins = (env.clientUrl || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 
   return (origin, callback) => {
     const allowedOrigins = [
-      env.clientUrl,
-      "http://localhost:3000",
-      "http://127.0.0.1:3000"
+      ...new Set([
+        ...configuredOrigins,
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+      ])
     ];
 
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow any Vercel-hosted frontend (custom domains and *.vercel.app
+    // production/preview deployments) without requiring an exact env match.
+    const isAllowed =
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      /^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin);
+
+    if (isAllowed) {
       callback(null, true);
     } else {
       callback(new Error(`Origin ${origin} not allowed by CORS`));
