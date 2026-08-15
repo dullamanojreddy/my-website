@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiGithub, FiPlay } from "react-icons/fi";
+import { FiGithub } from "react-icons/fi";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { getProjects } from "../services/api";
 import { INITIAL_PROJECTS } from "../data/projectsData";
@@ -12,11 +12,11 @@ function ProjectsPage() {
     const loadProjects = async () => {
       try {
         const response = await getProjects();
-        if (response.data?.data && response.data.data.length > 0) {
+        if (response.data?.data && response.data.data.length >= INITIAL_PROJECTS.length) {
           setProjects(response.data.data);
         }
       } catch {
-        // Keep rendering gracefully with fallback projects if API is offline.
+        // Fallback to INITIAL_PROJECTS
       } finally {
         setLoading(false);
       }
@@ -24,7 +24,6 @@ function ProjectsPage() {
 
     loadProjects();
   }, []);
-
 
   if (loading) {
     return <LoadingSpinner label="Loading projects..." />;
@@ -52,20 +51,17 @@ function ProjectsPage() {
               ))}
             </div>
             <div className="project-actions">
-              <a
-                href={project.demoUrl || "#"}
-                className={`btn secondary ${!project.demoUrl ? "disabled" : ""}`}
-                onClick={(event) => !project.demoUrl && event.preventDefault()}
-              >
-                Live Demo <FiPlay />
-              </a>
-              <a
-                href={project.githubUrl || "#"}
-                className={`btn secondary ${!project.githubUrl ? "disabled" : ""}`}
-                onClick={(event) => !project.githubUrl && event.preventDefault()}
-              >
-                GitHub <FiGithub />
-              </a>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn secondary"
+                  style={{ width: "100%", justifyContent: "center" }}
+                >
+                  GitHub <FiGithub />
+                </a>
+              )}
             </div>
           </article>
         ))}
@@ -74,4 +70,4 @@ function ProjectsPage() {
   );
 }
 
-export default ProjectsPage;
+export default ProjectsPage;

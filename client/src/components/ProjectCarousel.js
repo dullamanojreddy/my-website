@@ -1,5 +1,6 @@
-import { FiArrowLeft, FiArrowRight, FiGithub, FiPlay } from "react-icons/fi";
+import { FiArrowLeft, FiArrowRight, FiGithub } from "react-icons/fi";
 import { memo, useMemo, useState } from "react";
+
 
 
 function ProjectCarousel({ projects = [] }) {
@@ -56,21 +57,19 @@ function ProjectCarousel({ projects = [] }) {
           ))}
         </div>
         <div className="project-actions">
-          <a
-            href={current.demoUrl || "#"}
-            className={`btn secondary ${!current.demoUrl ? "disabled" : ""}`}
-            onClick={(event) => !current.demoUrl && event.preventDefault()}
-          >
-            Live Demo <FiPlay />
-          </a>
-          <a
-            href={current.githubUrl || "#"}
-            className={`btn secondary ${!current.githubUrl ? "disabled" : ""}`}
-            onClick={(event) => !current.githubUrl && event.preventDefault()}
-          >
-            GitHub <FiGithub />
-          </a>
+          {current.githubUrl && (
+            <a
+              href={current.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn secondary"
+              style={{ width: "100%", justifyContent: "center" }}
+            >
+              GitHub <FiGithub />
+            </a>
+          )}
         </div>
+
       </article>
     </section>
   );
