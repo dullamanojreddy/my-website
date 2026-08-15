@@ -6,15 +6,14 @@ import { getProjects } from "../services/api";
 function ProjectsPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const loadProjects = async () => {
       try {
         const response = await getProjects();
         setProjects(response.data.data);
-      } catch (requestError) {
-        setError("Unable to load projects right now.");
+      } catch {
+        // Keep rendering gracefully if the API is temporarily unavailable.
       } finally {
         setLoading(false);
       }
@@ -25,10 +24,6 @@ function ProjectsPage() {
 
   if (loading) {
     return <LoadingSpinner label="Loading projects..." />;
-  }
-
-  if (error) {
-    return <p className="error-text">{error}</p>;
   }
 
   return (

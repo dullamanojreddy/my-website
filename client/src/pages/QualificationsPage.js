@@ -13,8 +13,8 @@ function QualificationsPage() {
       try {
         const response = await getQualifications();
         setQualifications(response.data.data);
-      } catch (requestError) {
-        setError("Failed to fetch qualification details.");
+      } catch {
+        // Keep rendering gracefully if the API is temporarily unavailable.
       } finally {
         setLoading(false);
       }

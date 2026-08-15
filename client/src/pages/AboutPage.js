@@ -7,7 +7,6 @@ function AboutPage() {
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -21,8 +20,8 @@ function AboutPage() {
         setProfile(profileResponse.data.data);
         setProjects(projectResponse.data.data);
         setSkills(skillResponse.data.data);
-      } catch (requestError) {
-        setError("Failed to load profile information.");
+      } catch {
+        // Keep rendering gracefully if the API is temporarily unavailable.
       } finally {
         setLoading(false);
       }
@@ -33,10 +32,6 @@ function AboutPage() {
 
   if (loading) {
     return <LoadingSpinner label="Loading profile..." />;
-  }
-
-  if (error) {
-    return <p className="error-text">{error}</p>;
   }
 
   const highlights = [

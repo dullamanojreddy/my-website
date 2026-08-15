@@ -25,7 +25,6 @@ const getCertificateVisual = (title = "") => {
 function CertificationsPage() {
   const [certifications, setCertifications] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [activeCertificate, setActiveCertificate] = useState(null);
 
   useEffect(() => {
@@ -33,8 +32,8 @@ function CertificationsPage() {
       try {
         const response = await getCertifications();
         setCertifications(response.data.data);
-      } catch (requestError) {
-        setError("Unable to load certifications at the moment.");
+      } catch {
+        // Keep rendering gracefully if the API is temporarily unavailable.
       } finally {
         setLoading(false);
       }
@@ -45,10 +44,6 @@ function CertificationsPage() {
 
   if (loading) {
     return <LoadingSpinner label="Loading certifications..." />;
-  }
-
-  if (error) {
-    return <p className="error-text">{error}</p>;
   }
 
   return (

@@ -22,7 +22,7 @@ function HomePage() {
       const profileResponse = await getProfile();
       setProfile(profileResponse.data.data);
     } catch (requestError) {
-      setError("Unable to load portfolio data. Please try again.");
+      setError("The harder the challenge, the greater the purpose..");
     } finally {
       setLoading(false);
     }
