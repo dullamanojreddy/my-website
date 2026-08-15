@@ -5,7 +5,6 @@ import { getQualifications } from "../services/api";
 function QualificationsPage() {
   const [qualifications, setQualifications] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [viewMode, setViewMode] = useState("table");
 
   useEffect(() => {
@@ -25,10 +24,6 @@ function QualificationsPage() {
 
   if (loading) {
     return <LoadingSpinner label="Fetching qualifications..." />;
-  }
-
-  if (error) {
-    return <p className="error-text">{error}</p>;
   }
 
   const normalizeScore = (score) => {
